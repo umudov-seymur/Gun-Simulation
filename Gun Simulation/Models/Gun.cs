@@ -59,26 +59,31 @@ namespace Gun_Simulation.Models
         {
             if (fireBulletCount > BulletLeft)
             {
-                return $"You don't have enough bullets!";
+                return $"You don't have enough bullets! Please reload bullets.";
             }
 
             BulletLeft -= fireBulletCount;
 
-            return $"\nYou fired {fireBulletCount} bullets. Please reload bullets.";
+            return $"\nYou fired {fireBulletCount} bullets.";
         }
 
         public string Shoot()
         {
             int remainingBullet = BulletLeft;
             BulletLeft -= remainingBullet;
-            return $"\nYou fired {remainingBullet} bullets.";
+
+            if (remainingBullet > 0)
+            {
+                return $"\nYou fired {remainingBullet} bullets.";
+            }
+
+            return $"You don't have enough bullets! Please reload bullets.";
         }
 
         public string Reload(int bulletCount)
         {
-            int bulletNeedCount = MagazineSize - BulletLeft;
 
-            if (bulletNeedCount >= bulletCount)
+            if (MagazineSize > bulletCount)
             {
                 TotalBulletSize -= bulletCount;
                 BulletLeft += bulletCount;
@@ -90,9 +95,10 @@ namespace Gun_Simulation.Models
 
         public string Reload()
         {
+            int bulletNeedCount = MagazineSize - BulletLeft;
+
             if (BulletLeft < MagazineSize)
             {
-                int bulletNeedCount = MagazineSize - BulletLeft;
                 TotalBulletSize -= bulletNeedCount;
                 BulletLeft = MagazineSize;
                 return $"\nYour gun is reloaded with {bulletNeedCount} bullet.";

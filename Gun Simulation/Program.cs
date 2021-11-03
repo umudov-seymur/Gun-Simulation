@@ -7,7 +7,7 @@ namespace Gun_Simulation
     {
         static void Main(string[] args)
         {
-            Gun gun = new Gun("Glock", 100, 30);
+            Gun gun = new Gun("Glock", 50, 30);
 
             while (true)
             {
