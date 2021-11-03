@@ -59,12 +59,12 @@ namespace Gun_Simulation.Models
         {
             if (fireBulletCount > BulletLeft)
             {
-                return $"\nThe number of bullets you fire must be less than {BulletLeft + 1}.";
+                return $"You don't have enough bullets!";
             }
 
             BulletLeft -= fireBulletCount;
 
-            return $"\nYou fired {fireBulletCount} bullets.";
+            return $"\nYou fired {fireBulletCount} bullets. Please reload bullets.";
         }
 
         public string Shoot()
